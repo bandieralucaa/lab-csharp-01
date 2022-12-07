@@ -39,15 +39,17 @@ namespace Properties
         /// <inheritdoc cref="Program" />
         public static void Main()
         {
-            DeckFactory df = new DeckFactory();
+            DeckFactory df = new DeckFactory
+            {
+                Names = Enum.GetNames(typeof(ItalianNames)).ToList(),
+                Seeds = Enum.GetNames(typeof(ItalianSeeds)).ToList(),
 
-            df.SetNames(Enum.GetNames(typeof(ItalianNames)).ToList());
-            df.SetSeeds(Enum.GetNames(typeof(ItalianSeeds)).ToList());
-
+            };
+           
             // TODO understand string format convention
-            Console.WriteLine("The {1} deck has {0} cards: ", df.GetDeckSize(), "italian");
+            Console.WriteLine("The {1} deck has {0} cards: ", df.DeckSize, "italian");
 
-            foreach (Card c in df.GetDeck())
+            foreach (Card c in df.Deck)
             {
                 Console.WriteLine(c);
             }
